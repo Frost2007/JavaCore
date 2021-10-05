@@ -3,7 +3,7 @@ package Lesson3;
 public class CharDemo {
     public static void main(String[] args) {
          char ch1;
-         ch1='x';
+         ch1='a';
         System.out.println("Character1 contains -" +ch1);
 
         ch1++;

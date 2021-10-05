@@ -7,6 +7,6 @@ public class BooleanTest {
         b=true;
         System.out.println("b="+b);
 
-        if(b) System.out.println("The code is work ");
+        if(b) System.out.println("The code works ");
     }
 }
