@@ -17,7 +17,9 @@ public class FigurePainter3 {
 
         }
 
-
     }
 }
+
+
+
 
