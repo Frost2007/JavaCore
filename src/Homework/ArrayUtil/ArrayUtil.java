@@ -36,7 +36,7 @@ public class ArrayUtil {
 
         double result = 0;
         for (int r = 0; r < nums.length; r++)
-            result = result + nums[r];
+            result += nums[r];
         System.out.println("Միջին արժեքը =" + result / nums.length);
 
         int minimal = nums[0];
@@ -46,9 +46,7 @@ public class ArrayUtil {
                  {
                 minimal= nums[z];
                 minIndex = z;
-
-            }
-
+                 }
         }
         System.out.println("Ամենափոքր թիվը =" + minimal);
         for (int z = 0; z <nums.length ; z++) {
@@ -56,7 +54,6 @@ public class ArrayUtil {
                 minimal=nums[z];
                 minIndex=z;
             }
-
         }
         System.out.println("Ամենամեծ թիվը ="+minimal);
     }
