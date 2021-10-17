@@ -24,21 +24,37 @@ public class Bolola {
         }
         System.out.println(f);
         System.out.println("4.------------");
-        char[] babola = {'b', 'a', 'b', 'o', 'l', 'a'};
+        char[] babola = {'a', 'b', 'b', 'a', 'b', 'o', 'l', 'a'};
         boolean t = false;
         for (int i = 0; i < bolola.length; i++) {
             if (babola[i] == 'b' && babola[i + 2] == 'b')
-                t=true;
+                t = true;
         }
         System.out.println(t);
         System.out.println("5.------------");
         char[] text = {' ', 'b', 'a', ' ', 'r', ' ', 'e', ' ', ' ', 'v', ' '};
-        for (char x : text) {
-            if (x == ' ') continue;
-            System.out.print(x);
+        int count1 = 0;
+        for (int i = 0; i < text.length; i++) {
+            if (text[i] == ' ')
+                count1++;
+
         }
+        char[] text2 = new char[text.length - count1];
+        int count2 = 0;
+        for (int i = 0; i < text.length; i++) {
+            if (text[i] == ' ') continue;
+            {
+                text2[count2] = text[i];
+                count2++;
+            }
+        }
+        for (char x : text2)
+            System.out.print(x);
+
 
     }
 
-
 }
+
+
+
