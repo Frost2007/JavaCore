@@ -25,10 +25,10 @@ public class Bolola {
         System.out.println(f);
         System.out.println("4.------------");
         char[] babola = {'b', 'a', 'b', 'o', 'l', 'a'};
-        boolean t = true;
+        boolean t = false;
         for (int i = 0; i < bolola.length; i++) {
-            if (babola[i] == 'b' && babola[i + 1] == 'b')
-                break;
+            if (babola[i] == 'b' && babola[i + 2] == 'b')
+                t=true;
         }
         System.out.println(t);
         System.out.println("5.------------");
