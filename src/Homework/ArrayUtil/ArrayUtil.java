@@ -41,18 +41,17 @@ public class ArrayUtil {
 
         int minimal = nums[0];
         for (int z = 1; z < nums.length; z++) {
-            if (nums[z] < minimal)
-                 {
-                minimal= nums[z];
-                 }
+            if (nums[z] < minimal) {
+                minimal = nums[z];
+            }
         }
         System.out.println("Ամենափոքր թիվը =" + minimal);
-        for (int z = 0; z <nums.length ; z++) {
-            if ( nums[z]>minimal){
-                minimal=nums[z];
+        for (int z = 0; z < nums.length; z++) {
+            if (nums[z] > minimal) {
+                minimal = nums[z];
 
             }
         }
-        System.out.println("Ամենամեծ թիվը ="+minimal);
+        System.out.println("Ամենամեծ թիվը =" + minimal);
     }
 }

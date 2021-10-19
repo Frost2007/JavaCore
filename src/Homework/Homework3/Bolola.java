@@ -32,7 +32,7 @@ public class Bolola {
         }
         System.out.println(t);
         System.out.println("5.------------");
-        char[] text = {' ', 'b', 'a', ' ', 'r', ' ', 'e', ' ', ' ', 'v', ' '};
+        char[] text = {' ', ' ', 'b', 'a', 'r', 'e', 'v', ' ', ' '};
         int count1 = 0;
         for (int i = 0; i < text.length; i++) {
             if (text[i] == ' ')
@@ -50,8 +50,6 @@ public class Bolola {
         }
         for (char x : text2)
             System.out.print(x);
-
-
     }
 
 }
