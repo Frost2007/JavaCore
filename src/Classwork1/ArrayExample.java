@@ -18,6 +18,6 @@ public class ArrayExample {
                 System.out.println(isEven);
                 break;
             }
-        }    // quizfull.net}
+        }
     }
 }

@@ -3,34 +3,28 @@ package Homework.Homework3;
 public class HelloJava {
     public static void main(String[] args) {
         char[] text = {' ', ' ', 'h', 'e', 'l', 'l', 'o', ' ', 'j', 'a', 'v', 'a', ' ', ' '};
+        int startIndex = 0;
+        int endIndex = text.length - 1;
+        while (text[startIndex] == ' ') {
+            startIndex++;
+        }
+        while (text[endIndex] == ' ') {
+            endIndex--;
+        }
+        char[] text2 = new char[(endIndex - startIndex) + 1];
         int index = 0;
-        int i = 0;
-        char[] result = new char[text.length];
+        for (int i = startIndex; i <= endIndex; i++) {
+            text2[index++] = text[i];
 
-        for (i = 0; i < text.length; i++) {
-            if (text[i] == ' ')
-                continue;
-            else if (text[i] != ' ') {
-
-                break;
-            }
         }
-        for (int j = i; j < text.length; j++) {
-            if (text[i] == ' ') {
-                index++;
-                result[index] = text[i];
-
-            } else if (text[i] != ' ') {
-                index++;
-                result[index] = text[j];
-            }
-            System.out.print(result[index]);
+        for (int i = 0; i < text2.length; i++) {
+            System.out.print(text2[i]);
         }
-
 
 
     }
 }
+
 
 
 

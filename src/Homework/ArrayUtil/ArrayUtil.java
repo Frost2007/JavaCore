@@ -46,12 +46,6 @@ public class ArrayUtil {
             }
         }
         System.out.println("Ամենափոքր թիվը =" + minimal);
-        for (int z = 0; z < nums.length; z++) {
-            if (nums[z] > minimal) {
-                minimal = nums[z];
 
-            }
-        }
-        System.out.println("Ամենամեծ թիվը =" + minimal);
     }
 }

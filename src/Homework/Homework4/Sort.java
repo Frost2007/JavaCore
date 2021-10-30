@@ -5,16 +5,21 @@ public class Sort {
         int[] num = {5, 4, 7, 9, 1, 3, 2, 6, 8};
         int x;
         for (int i = 0; i < num.length; i++) {
-            for (int j = 0; j < num.length - 1; j++) {
+            for (int j = 0; j < num.length-1; j++) {
                 if (num[j] < num[j + 1]) {
-                    x = num[j];
-                    num[j] = num[j + 1];
-                    num[j + 1] = x;
+                    x=num[j+1];
+                    num[j + 1] = num[j];
+                    num[j]=x;
+
+
                 }
+
             }
+
         }
-        for (int a : num) {
-            System.out.print(a + ",");
-        }
+        for (int a:num)
+        System.out.print(a+",");
+
+
     }
 }

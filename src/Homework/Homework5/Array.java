@@ -29,60 +29,60 @@ public class Array {
         System.out.println();
     }
 
-    int countOfEvens(int number[]) {
+    int countOfEvens(int array[]) {
         int countOfEvens = 0;
-        for (int i = 0; i < number.length; i++) {
-            if (number[i] % 2 == 0) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % 2 == 0) {
                 countOfEvens++;
             }
         }
         return countOfEvens;
     }
 
-    int countOfOdds(int number[]) {
+    int countOfOdds(int array[]) {
         int countOfOdds = 0;
-        for (int i = 0; i < number.length; i++) {
-            if (number[i] % 2 != 0) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % 2 != 0) {
                 countOfOdds++;
             }
         }
         return countOfOdds;
     }
 
-    int sum(int number[]) {
+    int sum(int array[]) {
         int sum = 0;
-        for (int i = 0; i < number.length; i++) {
-            sum += number[i];
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
         }
 
         return sum;
     }
 
-    double avg(int number[]) {
+    double avg(int array[]) {
         double avg = 0;
         double sum = 0;
-        for (int i = 0; i < number.length; i++) {
-            sum += number[i];
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
         }
-        avg = sum / number.length;
+        avg = sum / array.length;
         return avg;
     }
 
-    int max(int number[]) {
-        int max = number[0];
-        for (int i = 1; i < number.length; i++) {
-            if (number[i] > max) {
-                max = number[i];
+    int max(int array[]) {
+        int max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
             }
         }
         return max;
     }
 
-    int min(int number[]) {
-        int min = number[0];
-        for (int i = 1; i < number.length; i++) {
-            if (number[i] < min) {
-                min = number[i];
+    int min(int array[]) {
+        int min = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < min) {
+                min = array[i];
             }
         }
         return min;
