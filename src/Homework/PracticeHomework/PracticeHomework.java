@@ -17,22 +17,18 @@ public class PracticeHomework {
         return theNext;
     }
 
-    boolean same;
 
     boolean isSame(int a, int b) {
         if (a == b) {
-            same = true;
-        } else same = false;
-        return same;
-    }
+            return true;
+        } else return false;
 
-    boolean b;
+    }
 
     boolean lessThanOrEqualToZero(int a) {
         if (a <= 0) {
-            b = true;
-        } else b = false;
-        return b;
+            return true;
+        } else return false;
     }
 
     boolean reverseBool(boolean value) {
