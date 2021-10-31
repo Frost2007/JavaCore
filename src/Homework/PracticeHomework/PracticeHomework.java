@@ -51,8 +51,10 @@ public class PracticeHomework {
     int maxLength(int[] array1, int[] array2) {
         if (array1.length > array2.length) {
             length = array1.length;
+            System.out.println("numbers1 length is more than numbers2 length, and it equals ");
         } else if (array2.length > array1.length)
             length = array2.length;
+        System.out.println("numbers2 length is more than numbers1 length, and it equals ");
 
         return length;
     }
