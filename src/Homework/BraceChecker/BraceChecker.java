@@ -25,28 +25,28 @@ public class BraceChecker {
             switch (chars[i]) {
                 case ')':
                     myStack.pop();
-                    c= (char) myStack.pop();
+                    c = (char) myStack.pop();
                     if (c == '{') {
-                        System.err.println(" Error: open " + c + " and closed" + chars[i]+" at "+(i+1));
+                        System.err.println(" Error: open " + c + " and closed" + chars[i] + " at " + (i + 1));
                     } else if (c == '[')
-                        System.err.println(" Error: open " + c + " and closed" + chars[i]+" at "+(i+1));
+                        System.err.println(" Error: open " + c + " and closed" + chars[i] + " at " + (i + 1));
                     break;
                 case '}':
                     myStack.pop();
-                    c= (char) myStack.pop();
+                    c = (char) myStack.pop();
                     if (c == '(') {
-                        System.err.println(" Error: open " + c + " and closed " + chars[i]+" at "+(i+1));
+                        System.err.println(" Error: open " + c + " and closed " + chars[i] + " at " + (i + 1));
                     } else if (c == '[') {
-                        System.err.println(" Error: open " + c + " and closed " + chars[i]+" at "+(i+1));
+                        System.err.println(" Error: open " + c + " and closed " + chars[i] + " at " + (i + 1));
                     }
                     break;
                 case ']':
                     myStack.pop();
-                    c= (char) myStack.pop();
+                    c = (char) myStack.pop();
                     if (c == '(') {
-                        System.err.println(" Error: open " + c + " and closed " + chars[i]+" at "+(i+1));
+                        System.err.println(" Error: open " + c + " and closed " + chars[i] + " at " + (i + 1));
                     } else if (c == '{')
-                        System.err.println(" Error: open " + c + " and closed " + chars[i]+" at "+(i+1));
+                        System.err.println(" Error: open " + c + " and closed " + chars[i] + " at " + (i + 1));
                     break;
 
 
