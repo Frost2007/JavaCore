@@ -3,21 +3,20 @@ package Calculator;
 public class Calculator {
     double a, b;
 
-    int gumarum(int a, int b) {
+    public int gumarum(int a, int b) {
         return a + b;
     }
 
-    int hanum(int a, int b) {
+    public int hanum(int a, int b) {
         return a - b;
     }
 
-    double bajanum(double a, double b) {
+    public double bajanum(double a, double b) {
         return a / b;
     }
 
-    long bazmapatkum(int a, int b) {
+    public long bazmapatkum(int a, int b) {
         return a * b;
-
     }
 }
 
