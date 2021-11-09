@@ -16,36 +16,43 @@ public class BraceChecker {
         char[] chars = text.toCharArray();
 
         for (int i = 0; i < chars.length; i++) {
-            if (chars[i] == '(' || chars[i] == '{' || chars[i] == '[') {
+            if (chars[i] == '(' || chars[i] == '{' || chars[i] == '[')
                 myStack.push(chars[i]);
-            }
         }
-        boolean b;
-        for (int i = chars.length - 1; i >= 0; i--) {
+        char c;
 
-            if (chars[i] == ')' || chars[i] == '}' || chars[i] == ']')
-                myStack.pop();
-
+        for (int i = chars.length - 1; i > 0; i--) {
             switch (chars[i]) {
                 case ')':
-                    if (myStack.pop() == '(') {
-                        b = true;
-                    }
+                    myStack.pop();
+                    c= (char) myStack.pop();
+                    if (c == '{') {
+                        System.err.println(" Error: open " + c + " and closed" + chars[i]+" at "+(i+1));
+                    } else if (c == '[')
+                        System.err.println(" Error: open " + c + " and closed" + chars[i]+" at "+(i+1));
                     break;
                 case '}':
-                    if (myStack.pop() == '{') {
-                        b = true;
+                    myStack.pop();
+                    c= (char) myStack.pop();
+                    if (c == '(') {
+                        System.err.println(" Error: open " + c + " and closed " + chars[i]+" at "+(i+1));
+                    } else if (c == '[') {
+                        System.err.println(" Error: open " + c + " and closed " + chars[i]+" at "+(i+1));
                     }
                     break;
                 case ']':
-                    if (myStack.pop() == '[') {
-                        b = true;
-                    }
+                    myStack.pop();
+                    c= (char) myStack.pop();
+                    if (c == '(') {
+                        System.err.println(" Error: open " + c + " and closed " + chars[i]+" at "+(i+1));
+                    } else if (c == '{')
+                        System.err.println(" Error: open " + c + " and closed " + chars[i]+" at "+(i+1));
                     break;
-                default:
-                    b = false;
+
+
             }
         }
     }
 }
+
 

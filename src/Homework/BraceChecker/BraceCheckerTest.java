@@ -5,8 +5,9 @@ public class BraceCheckerTest {
         BraceChecker bracechecker = new BraceChecker("Hello (from) [Java}");
 
 
-        bracechecker.check();
-       // System.out.println("Error: opened [ but closed } at 20");
+      bracechecker.check();
+
+
 
     }
 
