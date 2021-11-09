@@ -1,4 +1,4 @@
-package Lesson10;
+package Lesson10.Stack;
 
 public class Stack {
     int stack[] = new int[10];

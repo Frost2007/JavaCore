@@ -13,11 +13,56 @@ public class DynamicArray {
 //Ստուգել, եթե մասիվի մեջ տեղ չկա -> ,կանչել extend()  և ավելացնել
 
     public void add(int value) {
-        if (size == array1.length) {
+        if (array1.length == size) {
             extend();
-            array1[size++] = value;
+        }
+        array1[size++] = value;
+    }
+
+    //masivi mej avelacnum enq value ishelov indexi tex@
+    public void add(int value, int index) {
+        if (index < 0 || index > size) {
+            System.err.println("invalid index");
         } else {
-            array1[size++] = value;
+            if (array1.length == size) {
+                extend();
+            }
+            for (int i = size; i >= index; i--) {
+                array1[i + 1] = array1[i];
+            }
+            array1[index] = value;
+            size++;
+        }
+
+    }
+
+    //karox enq avelacnel mer masivin mek ayl masiv;
+    public void add(int[] numbers) {
+        for (int number : numbers) {
+            add(number);
+
+        }
+
+    }
+
+    public boolean isExist(int value) {
+        for (int i = 0; i < size; i++) {
+            if (i == value) ;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isEmpty() {
+       return size==0;
+    }
+
+
+    public void set(int value, int index) {
+        if (index < 0 || index > size) {
+            System.err.println("invalid index");
+        } else {
+            array1[index] = value;
         }
     }
 
@@ -37,16 +82,31 @@ public class DynamicArray {
     // վերադարձնել մասիվի index-երրորդ էլեմենտները,հակառակ դեպքում վերադարձնել -1:
 
     public int getByIndex(int index) {
-        if (index < 0 || index == array1.length) {
+        if (index < 0 || index > size) {
+            System.err.println("invalid index");
             return -1;
         }
         return array1[index];
     }
 
+    public void delete(int index) {
+        if (index < 0 || index > size)
+            System.err.println("invalid index");
+        for (int i = index + 1; i < size; i++) {
+
+            array1[i - 1] = array1[i];
+        }
+
+        size--;
+
+
+    }
+
+
     //Տպել մասիվի ավելացված էլեմենտները
     public void print() {
         for (int i = 0; i < size; i++) {
-            System.out.print(array1[i]);
+            System.out.print(array1[i] + " ");
 
         }
 
