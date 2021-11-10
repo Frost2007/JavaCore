@@ -24,7 +24,6 @@ public class BraceChecker {
         for (int i = chars.length - 1; i > 0; i--) {
             switch (chars[i]) {
                 case ')':
-                    myStack.pop();
                     c = (char) myStack.pop();
                     if (c == '{') {
                         System.err.println(" Error: open " + c + " and closed" + chars[i] + " at " + (i + 1));
@@ -32,7 +31,6 @@ public class BraceChecker {
                         System.err.println(" Error: open " + c + " and closed" + chars[i] + " at " + (i + 1));
                     break;
                 case '}':
-                    myStack.pop();
                     c = (char) myStack.pop();
                     if (c == '(') {
                         System.err.println(" Error: open " + c + " and closed " + chars[i] + " at " + (i + 1));
@@ -41,7 +39,6 @@ public class BraceChecker {
                     }
                     break;
                 case ']':
-                    myStack.pop();
                     c = (char) myStack.pop();
                     if (c == '(') {
                         System.err.println(" Error: open " + c + " and closed " + chars[i] + " at " + (i + 1));
