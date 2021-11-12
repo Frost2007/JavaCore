@@ -21,34 +21,34 @@ public class BraceChecker {
         }
         char c;
 
-        for (int i = chars.length - 1; i > 0; i--) {
+        for (int i = 0; i < chars.length; i++) {
             switch (chars[i]) {
                 case ')':
                     c = (char) myStack.pop();
-                    if (c == '{') {
-                        System.err.println(" Error: open " + c + " and closed" + chars[i] + " at " + (i + 1));
-                    } else if (c == '[')
-                        System.err.println(" Error: open " + c + " and closed" + chars[i] + " at " + (i + 1));
-                    break;
-                case '}':
-                    c = (char) myStack.pop();
-                    if (c == '(') {
-                        System.err.println(" Error: open " + c + " and closed " + chars[i] + " at " + (i + 1));
-                    } else if (c == '[') {
-                        System.err.println(" Error: open " + c + " and closed " + chars[i] + " at " + (i + 1));
-                    }
-                    break;
-                case ']':
-                    c = (char) myStack.pop();
-                    if (c == '(') {
-                        System.err.println(" Error: open " + c + " and closed " + chars[i] + " at " + (i + 1));
-                    } else if (c == '{')
+                    if (c == '{' || c == '[')
                         System.err.println(" Error: open " + c + " and closed " + chars[i] + " at " + (i + 1));
                     break;
 
+                case '}':
+                    c = (char) myStack.pop();
+                    if (c == '(' || c == '[')
+                        System.err.println(" Error: open " + c + " and closed " + chars[i] + " at " + (i + 1));
+                    break;
+
+                case ']':
+                    c = (char) myStack.pop();
+                    if (c == '(' || c == '{')
+                        System.err.println(" Error: open " + c + " and closed " + chars[i] + " at " + (i + 1));
+
+                    break;
 
             }
         }
+
+        if (myStack.getSize() >= 0)
+            System.err.println("Error : open brace  but don`t closed");
+        else if (myStack.getSize() < 0)
+            System.err.println("Error : don`t open brace  but  closed");
     }
 }
 

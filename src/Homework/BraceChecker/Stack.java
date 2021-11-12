@@ -3,10 +3,24 @@ package Homework.BraceChecker;
 public class Stack {
     private int[] array = new int[10];
     private int size;
+    void setSize(){
+
+    }
+    int getSize(){
+        for (int i = 0; i <array.length ; i++) {
+            return array[i];
+        }
+     return size;
+    }
 
     public Stack() {
         size = -1;
     }
+public Stack(int length){
+        array=new int[length];
+        size=-1;
+}
+
 
     public void push(int value) {
         if (size == array.length) {
@@ -24,4 +38,5 @@ System.out.println("stack is empty");
             return array[size--];
         }
     }
+
 }
