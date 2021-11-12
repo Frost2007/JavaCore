@@ -43,12 +43,17 @@ public class BraceChecker {
                     break;
 
             }
+            if (myStack.getSize() < 0 && (chars[i] == ')' || chars[i] == '}' || chars[i] == ']'))
+                System.err.println("Error : don`t open brace  but  closed " + chars[i]);
         }
 
-        if (myStack.getSize() >= 0)
-            System.err.println("Error : open brace  but don`t closed");
-        else if (myStack.getSize() < 0)
-            System.err.println("Error : don`t open brace  but  closed");
+
+        while (myStack.getSize() >= 0) {
+            c = (char) myStack.pop();
+            System.err.println("Error : open brace " + c + "  but don`t closed");
+            if (myStack.getSize() == -1) break;
+        }
+
     }
 }
 

@@ -30,7 +30,7 @@ public class Terminal {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert Cash Please");
         cash = scanner.nextInt();
-        if (cash >= 10) {
+        if (cash >= 100) {
             commission1 = (cash / 100) * 7;
             pay1 = cash - commission1;
             less = cash % 100;
