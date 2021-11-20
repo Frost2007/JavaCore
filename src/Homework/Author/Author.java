@@ -8,7 +8,7 @@ public class Author {
     private String gender;
 
 
-    public Author(String name, String surname, String email, int age, String gender) {
+    public Author(String name, String surname,String email,int age,String gender) {
         this.name = name;
         this.surname = surname;
         this.email = email;
