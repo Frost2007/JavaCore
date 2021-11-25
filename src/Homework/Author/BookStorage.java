@@ -77,10 +77,12 @@ public class BookStorage {
     }
 
     private void deleteByIndex(int index) {
-        for (int j = index + 1; j < size; j++) {
-            books[j - 1] = books[j];
+        for (int i = 0; i < size; i++) {
+            for (int j = index + 1; j < size; j++) {
+                books[j - 1] = books[j];
+            }
+            size--;
         }
-        size--;
     }
 
     public void deleteBooksOfAuthors(Author author) {
