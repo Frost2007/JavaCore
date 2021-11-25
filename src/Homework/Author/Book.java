@@ -9,7 +9,7 @@ public class Book {
     private Author author;
 
 
-    public Book(String title, String description, double price, int count,Author author) {
+    public Book(String title, String description, double price, int count, Author author) {
         this.title = title;
         this.description = description;
         this.price = price;
@@ -81,10 +81,10 @@ public class Book {
     }
 
     public void setAuthor(String name, String surname, String gender, int age) {
-      name=author.getName();
-      surname=author.getSurname();
-      gender = author.getGender();
-      age= author.getAge();
+        name = author.getName();
+        surname = author.getSurname();
+        gender = author.getGender();
+        age = author.getAge();
 
     }
 }
