@@ -4,8 +4,8 @@ import Lesson10.Stack.Stack;
 
 public class TestStack {
     public static void main(String[] args) {
-        Stack myStack1 = new Stack();
-        Stack myStack2 = new Stack();
+        Stack myStack1 = new Stack(10);
+        Stack myStack2 = new Stack(20);
         //place numbers on the stack
         for (int i = 0; i < 10; i++) myStack1.push(i);
         for (int i = 10; i < 20; i++) myStack2.push(i);

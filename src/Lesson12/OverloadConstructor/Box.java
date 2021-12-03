@@ -35,8 +35,9 @@ public class Box {
     Box(double len) {
         width = height = depth = len;
     }
+
     //рассчитать и возвратить объем
-    double volume(){
-        return width*height*depth;
+    double volume() {
+        return width * height * depth;
     }
 }

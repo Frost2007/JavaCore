@@ -6,6 +6,7 @@ public class Box {
     double depth;
 
     double volume() {
+
         return width * height * depth;
     }
 

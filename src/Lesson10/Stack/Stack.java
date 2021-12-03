@@ -1,16 +1,17 @@
 package Lesson10.Stack;
 
 public class Stack {
-    int stack[] = new int[10];
-    int index;
+    private int stack[];
+    private int index;
 
-    Stack() {
+    Stack( int size) {
+        stack = new int[size];
         index = -1;
     }
 
     // Insert an element in the Stack.
     void push(int item) {
-        if (index == 9)
+        if (index == stack.length - 1)
             System.out.println("Stack is full");
         else
             stack[++index] = item;

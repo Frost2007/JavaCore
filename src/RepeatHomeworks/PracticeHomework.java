@@ -22,6 +22,7 @@ public class PracticeHomework {
     }
 
     boolean reverseBool(boolean value) {
+
         return !value;
     }
 

@@ -1,6 +1,6 @@
 package Lesson11;
 
-import Calculator.Calculator;
+import calculator.Calculator;
 
 import java.util.Scanner;
 

@@ -2,14 +2,14 @@ package Lesson9;
 
 public class BoxDemo {
     public static void main(String[] args) {
-        Box mybox = new Box();
+        Box myBox = new Box();
         double vol;
-        mybox.width = 10;
-        mybox.height = 20;
-        mybox.depth = 15;
+        myBox.width = 10;
+        myBox.height = 20;
+        myBox.depth = 15;
 
-        vol = mybox.width * mybox.height * mybox.depth;
-        System.out.println("The volume of mybox equals- "+vol);
+        vol = myBox.width * myBox.height * myBox.depth;
+        System.out.println("The volume of myBox equals- "+vol);
     }
 
 }
