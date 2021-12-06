@@ -1,9 +1,11 @@
 package homework.education;
 
+import homework.education.model.User;
 import homework.education.model.Lesson;
 import homework.education.model.Student;
 import homework.education.storage.LessonStorage;
 import homework.education.storage.StudentStorage;
+import homework.education.storage.UserStorage;
 import homework.education.util.DateUtil;
 
 import java.text.ParseException;
@@ -15,29 +17,62 @@ public class LessonStudentTest implements LessonStudentCommands {
     static Scanner scanner = new Scanner(System.in);
     static StudentStorage studentStorage = new StudentStorage();
     static LessonStorage lessonStorage = new LessonStorage();
-
+    static UserStorage userStorage = new UserStorage();
+    static boolean isRun = true;
 
     public static void main(String[] args) throws ParseException {
-        lessonStorage.add(new Lesson("java", 3, "karen", 35000));
-        lessonStorage.add(new Lesson("python", 2, "gevorg", 20000));
-        lessonStorage.add(new Lesson("javascript", 2.5, "aghas", 25000));
 
-        Lesson[] lesson = new Lesson[2];
-        lesson[0] = lessonStorage.getByLessonName("java");
-        lesson[1] = lessonStorage.getByLessonName("python");
-        studentStorage.add(new Student("hovhannes", "avetisyan", 40, DateUtil.stringToDate("06/06/1981"),"hovo@mail.com", "098979617", lesson));
-        //     studentStorage.add(new Student("ben", "khachatryan", 30, "ben@mail.com", "094556677", new Lesson("java", 3, "karen", 35000)));
-        //    studentStorage.add(new Student("poxos", "poxosyan", 20, "poxos@mail.com", "055310712", new Lesson("python", 2, "gevorg", 20000)));
-        //  studentStorage.add(new Student("petros", "petrosyan", 25, "petros@mail.com", "044150712", new Lesson("javascript", 2.5, "aghas", 25000)));
-
-        boolean isRun = true;
         while (isRun) {
-            LessonStudentCommands.printCommands();
-            String command = scanner.nextLine();
-            switch (command) {
+            LessonStudentCommands.printStartCommands();
+            String startCommand = scanner.nextLine();
+            switch (startCommand) {
+                case LOGIN:
+                    loginUser();
+                    break;
+                case REGISTER:
+                    registerUser();
+                    break;
                 case EXIT:
                     isRun = false;
-                    break;
+
+
+            }
+        }
+    }
+
+    private static void loginUser() throws ParseException {
+        System.out.println("Enter Your email");
+        String email = scanner.nextLine();
+        User user = userStorage.getByEmail(email);
+        if (user != null) {
+            System.out.println("Enter Your password");
+            String password = scanner.nextLine();
+            if (user.getPassword().equals(password)) {
+                System.out.println("You are in system");
+                if (user.getType().equals("admin")) {
+                    adminMenu();
+                } else if (user.getType().equals("user")) {
+                    userMenu();
+                }
+            } else {
+                System.err.println("invalid password");
+            }
+
+        } else {
+            System.err.println("You are not registered, please signUp");
+
+        }
+
+
+    }
+
+    public static void userMenu() throws ParseException {
+        while (isRun) {
+            LessonStudentCommands.printCommandsUser();
+            String commandUser = scanner.nextLine();
+            switch (commandUser) {
+                case EXIT:
+                    return;
                 case ADD_LESSON:
                     addLesson();
                     break;
@@ -51,7 +86,38 @@ public class LessonStudentTest implements LessonStudentCommands {
                     printStudentByLesson();
                     break;
                 case PRINT_LESSONS:
-                    printLessons();
+                    lessonStorage.print();
+                    break;
+                default:
+                    System.err.println("INVALID COMMAND");
+                    break;
+            }
+        }
+    }
+
+    public static void adminMenu() throws ParseException {
+
+        LessonStudentCommands.printCommandsAdmin();
+        String commandAdmin = scanner.nextLine();
+        while (isRun) {
+            switch (commandAdmin) {
+                case EXIT:
+                    isRun = false;
+                    return;
+                case ADD_LESSON:
+                    addLesson();
+                    break;
+                case ADD_STUDENT:
+                    addStudent();
+                    break;
+                case PRINT_STUDENTS:
+                    printStudents();
+                    break;
+                case PRINT_STUDENTS_BY_LESSON:
+                    printStudentByLesson();
+                    break;
+                case PRINT_LESSONS:
+                    lessonStorage.print();
                     break;
                 case DELETE_LESSON_BY_NAME:
                     deleteLessonByName();
@@ -59,9 +125,44 @@ public class LessonStudentTest implements LessonStudentCommands {
                 case DELETE_STUDENT_BY_EMAIL:
                     deleteStudentByEmail();
                     break;
+                default:
+                    System.out.println("INVALID COMMAND");
+                    break;
 
             }
         }
+    }
+
+    private static void registerUser() {
+        System.out.println("Please input your name");
+        String userName = scanner.nextLine();
+        System.out.println("input your surname");
+        String userSurname = scanner.nextLine();
+        System.out.println("Enter your email");
+        String userEmail = scanner.nextLine();
+        System.out.println("Create password please");
+        String password = scanner.nextLine();
+        boolean isType = true;
+        while (isType) {
+            System.out.println("Which kind of user are you? ");
+            System.out.println("admin or user");
+            String typeOfUser = scanner.nextLine();
+            if (typeOfUser.equals("admin") || typeOfUser.equals("user")) {
+                User user = new User(userName, userSurname, userEmail, password, typeOfUser);
+                userStorage.addUser(user);
+                System.out.println("Thank You, You are registered");
+                isType = false;
+            } else {
+                System.err.println("please type only: admin or user ");
+
+            }
+        }
+
+
+    }
+
+    public void printUsers() {
+        userStorage.printUsers();
     }
 
     private static void deleteStudentByEmail() {
@@ -94,7 +195,7 @@ public class LessonStudentTest implements LessonStudentCommands {
 
 
     private static void printLessons() {
-        lessonStorage.print();
+
     }
 
     private static void addLesson() {
@@ -115,7 +216,7 @@ public class LessonStudentTest implements LessonStudentCommands {
         studentStorage.print();
     }
 
-    private static void addStudent() throws ParseException {
+    public static void addStudent() throws ParseException {
         System.out.println("please input name of lesson, or lessons if there is more than one ");
         String lessonStr = scanner.nextLine();
         String[] lessonNames = lessonStr.split(",");
@@ -149,5 +250,21 @@ public class LessonStudentTest implements LessonStudentCommands {
 
         studentStorage.add(student);
         System.out.println("Thank You, the student was added");
+
+        lessonStorage.add(new Lesson("java", 3, "karen", 35000));
+        lessonStorage.add(new Lesson("python", 2, "gevorg", 20000));
+        lessonStorage.add(new Lesson("javascript", 2.5, "aghas", 25000));
+
+        Lesson[] lesson = new Lesson[3];
+        lesson[0] = lessonStorage.getByLessonName("java");
+        lesson[1] = lessonStorage.getByLessonName("python");
+        lesson[2] = lessonStorage.getByLessonName("javascript");
+
+        studentStorage.add(new Student("hovhannes", "avetisyan", 40,
+                DateUtil.stringToDate("06/06/1981"), "hovo@mail.com", "098979617", lesson));
+        //     studentStorage.add(new Student("ben", "khachatryan", 30, "ben@mail.com", "094556677", new Lesson("java", 3, "karen", 35000)));
+        //    studentStorage.add(new Student("poxos", "poxosyan", 20, "poxos@mail.com", "055310712", new Lesson("python", 2, "gevorg", 20000)));
+        //  studentStorage.add(new Student("petros", "petrosyan", 25, "petros@mail.com", "044150712", new Lesson("javascript", 2.5, "aghas", 25000)));
+        userStorage.addUser(new User("hovo", "avetisyan", "hovo@mail.com", "0606", "amin"));
     }
 }

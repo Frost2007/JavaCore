@@ -1,5 +1,6 @@
 package homework.education.storage;
 
+import homework.education.LessonStudentTest;
 import homework.education.model.Lesson;
 import homework.education.util.ArrayUtil;
 
@@ -23,7 +24,12 @@ public class LessonStorage {
 
     public void print() {
         for (int i = 0; i < size; i++) {
+            if(lessons[i] != null)
             System.out.println(lessons[i]);
+            else{
+                System.out.println("THERE IS NO LESSON");
+            }
+
         }
     }
 
