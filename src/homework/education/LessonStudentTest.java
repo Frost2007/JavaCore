@@ -1,13 +1,13 @@
 package homework.education;
 
-import homework.education.model.User;
+import homework.education.exeptions.UserNotFoundException;
 import homework.education.model.Lesson;
 import homework.education.model.Student;
+import homework.education.model.User;
 import homework.education.storage.LessonStorage;
 import homework.education.storage.StudentStorage;
 import homework.education.storage.UserStorage;
 import homework.education.util.DateUtil;
-
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
@@ -35,7 +35,8 @@ public class LessonStudentTest implements LessonStudentCommands {
                 case EXIT:
                     isRun = false;
 
-
+                default:
+                    System.err.println("INVALID COMMAND");
             }
         }
     }
@@ -43,8 +44,8 @@ public class LessonStudentTest implements LessonStudentCommands {
     private static void loginUser() throws ParseException {
         System.out.println("Enter Your email");
         String email = scanner.nextLine();
-        User user = userStorage.getByEmail(email);
-        if (user != null) {
+        try {
+            User user = userStorage.getByEmail(email);
             System.out.println("Enter Your password");
             String password = scanner.nextLine();
             if (user.getPassword().equals(password)) {
@@ -57,9 +58,8 @@ public class LessonStudentTest implements LessonStudentCommands {
             } else {
                 System.err.println("invalid password");
             }
-
-        } else {
-            System.err.println("You are not registered, please signUp");
+        } catch (UserNotFoundException e) {
+            System.err.println(e.getMessage());
 
         }
 
@@ -134,36 +134,36 @@ public class LessonStudentTest implements LessonStudentCommands {
     }
 
     private static void registerUser() {
-        System.out.println("Please input your name");
-        String userName = scanner.nextLine();
-        System.out.println("input your surname");
-        String userSurname = scanner.nextLine();
         System.out.println("Enter your email");
         String userEmail = scanner.nextLine();
-        System.out.println("Create password please");
-        String password = scanner.nextLine();
-        boolean isType = true;
-        while (isType) {
+        try {
+            userStorage.getByEmail(userEmail);
+            System.out.println("User with this email already exists");
+        } catch (UserNotFoundException e) {
+            System.out.println("Please input your name");
+            String userName = scanner.nextLine();
+            System.out.println("input your surname");
+            String userSurname = scanner.nextLine();
+            System.out.println("Create password please");
+            String password = scanner.nextLine();
             System.out.println("Which kind of user are you? ");
             System.out.println("admin or user");
-            String typeOfUser = scanner.nextLine();
-            if (typeOfUser.equals("admin") || typeOfUser.equals("user")) {
-                User user = new User(userName, userSurname, userEmail, password, typeOfUser);
-                userStorage.addUser(user);
-                System.out.println("Thank You, You are registered");
-                isType = false;
-            } else {
-                System.err.println("please type only: admin or user ");
+            boolean isType = true;
+            while (isType) {
+                String typeOfUser = scanner.nextLine();
+                if (typeOfUser.equals("admin") || typeOfUser.equals("user")) {
+                    User user = new User(userName, userSurname, userEmail, password, typeOfUser);
+                    userStorage.addUser(user);
+                    System.out.println("Thank You, You are registered");
+                    isType = false;
+                } else {
+                    System.err.println("please type only: admin or user ");
 
+                }
             }
         }
-
-
     }
 
-    public void printUsers() {
-        userStorage.printUsers();
-    }
 
     private static void deleteStudentByEmail() {
         System.out.println("enter email of student");
@@ -194,10 +194,6 @@ public class LessonStudentTest implements LessonStudentCommands {
     }
 
 
-    private static void printLessons() {
-
-    }
-
     private static void addLesson() {
         System.out.println("please input lessonName");
         String lessonName = scanner.nextLine();
@@ -221,8 +217,8 @@ public class LessonStudentTest implements LessonStudentCommands {
         String lessonStr = scanner.nextLine();
         String[] lessonNames = lessonStr.split(",");
         int size = 0;
-        for (int i = 0; i < lessonNames.length; i++) {
-            if (lessonStorage.getByLessonName(lessonNames[i]) != null)
+        for (String lessonName : lessonNames) {
+            if (lessonStorage.getByLessonName(lessonName) != null)
                 size++;
         }
         Lesson[] lessons = new Lesson[size];
@@ -247,24 +243,22 @@ public class LessonStudentTest implements LessonStudentCommands {
         String phone = scanner.nextLine();
 
         Student student = new Student(name, surname, age, date, email, phone, lessons);
-
         studentStorage.add(student);
         System.out.println("Thank You, the student was added");
 
-        lessonStorage.add(new Lesson("java", 3, "karen", 35000));
-        lessonStorage.add(new Lesson("python", 2, "gevorg", 20000));
-        lessonStorage.add(new Lesson("javascript", 2.5, "aghas", 25000));
+//        lessonStorage.add(new Lesson("java", 3, "karen", 35000));
+//        lessonStorage.add(new Lesson("python", 2, "gevorg", 20000));
+//        lessonStorage.add(new Lesson("javascript", 2.5, "aghas", 25000));
+//
+//        Lesson[] lesson = new Lesson[3];
+//        lesson[0] = lessonStorage.getByLessonName("java");
+//        lesson[1] = lessonStorage.getByLessonName("python");
+//        lesson[2] = lessonStorage.getByLessonName("javascript");
+//
+//        userStorage.addUser(new User("Hovhannes","Avetisyan","vip.psn2007@mail.ru","0606","admin"));
+//        studentStorage.add(new Student("hovhannes", "avetisyan", 40,
+//                DateUtil.stringToDate("06/06/1981"), "hovo@mail.com", "098979617", lesson));
+//        new Lesson("javascript", 2.5, "aghas", 25000);
 
-        Lesson[] lesson = new Lesson[3];
-        lesson[0] = lessonStorage.getByLessonName("java");
-        lesson[1] = lessonStorage.getByLessonName("python");
-        lesson[2] = lessonStorage.getByLessonName("javascript");
-
-        studentStorage.add(new Student("hovhannes", "avetisyan", 40,
-                DateUtil.stringToDate("06/06/1981"), "hovo@mail.com", "098979617", lesson));
-        //     studentStorage.add(new Student("ben", "khachatryan", 30, "ben@mail.com", "094556677", new Lesson("java", 3, "karen", 35000)));
-        //    studentStorage.add(new Student("poxos", "poxosyan", 20, "poxos@mail.com", "055310712", new Lesson("python", 2, "gevorg", 20000)));
-        //  studentStorage.add(new Student("petros", "petrosyan", 25, "petros@mail.com", "044150712", new Lesson("javascript", 2.5, "aghas", 25000)));
-        userStorage.addUser(new User("hovo", "avetisyan", "hovo@mail.com", "0606", "amin"));
     }
 }

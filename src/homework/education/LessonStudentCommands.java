@@ -18,11 +18,11 @@ public interface LessonStudentCommands {
        System.out.println("Please input " + EXIT + " for EXIT");
 
 
-   };
+   }
 
 
     static void printCommandsAdmin() {
-        System.out.println("\u001B[34m" +"Please input " + EXIT + " for return to main menu");
+        System.out.println("\u001B[34m" +"Please input " + EXIT + " for LOGOUT & return to main menu");
         System.out.println("Please input " + ADD_LESSON + "for ADD_LESSON");
         System.out.println("Please input " + ADD_STUDENT + " for ADD_STUDENT");
         System.out.println("Please input " + PRINT_STUDENTS + " for PRINT_STUDENT");
@@ -33,7 +33,7 @@ public interface LessonStudentCommands {
     }
 
     static void printCommandsUser() {
-        System.out.println("\u001B[34m" +"Please input " + EXIT + " for  return to main menu");
+        System.out.println("\u001B[34m" +"Please input " + EXIT + " for LOGOUT &  return to main menu");
         System.out.println("Please input " + ADD_LESSON + "for ADD_LESSON");
         System.out.println("Please input " + ADD_STUDENT + " for ADD_STUDENT");
         System.out.println("Please input " + PRINT_STUDENTS + " for PRINT_STUDENT");

@@ -7,12 +7,14 @@ public class User {
     private String password;
     private String type;
 
+
     public User(String userName, String userSurname, String email, String password, String type) {
         this.userName = userName;
         this.userSurname = userSurname;
         this.userEmail = email;
         this.password = password;
         this.type = type;
+
     }
 
     public String getUserName() {

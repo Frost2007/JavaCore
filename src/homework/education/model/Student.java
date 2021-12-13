@@ -16,14 +16,14 @@ public class Student {
     private Lesson[] lesson;
 
 
-    public Student(String name, String surname, int age, Date dateOfBirth, String email, String phone, Lesson[] lesson) {
+    public Student(String name, String surname, int age, Date dateOfBirth, String email, String phone, Lesson[] lessons) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.phone = phone;
-        this.lesson = lesson;
+        this.lesson = lessons;
     }
 
     public String getName() {
