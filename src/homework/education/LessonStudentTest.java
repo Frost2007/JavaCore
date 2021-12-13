@@ -1,6 +1,6 @@
 package homework.education;
 
-import homework.education.exeptions.UserNotFoundException;
+import homework.education.exceptions.UserNotFoundException;
 import homework.education.model.Lesson;
 import homework.education.model.Student;
 import homework.education.model.User;

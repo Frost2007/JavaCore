@@ -1,6 +1,6 @@
 package homework.education.storage;
 
-import homework.education.exeptions.UserNotFoundException;
+import homework.education.exceptions.UserNotFoundException;
 import homework.education.model.User;
 
 public class UserStorage {
