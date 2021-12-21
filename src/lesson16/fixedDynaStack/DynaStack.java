@@ -1,4 +1,4 @@
-package lesson16.fixedDynaSrack;
+package lesson16.fixedDynaStack;
 
 class DynaStack implements IntStack {
     private int stck[];

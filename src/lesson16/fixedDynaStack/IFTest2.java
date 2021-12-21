@@ -1,4 +1,4 @@
-package lesson16.fixedDynaSrack;
+package lesson16.fixedDynaStack;
 
 public class IFTest2 {
     public static void main(String[] args) {
