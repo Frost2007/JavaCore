@@ -1,18 +1,19 @@
 package homework.author.model;
 
-import java.util.Arrays;
+import java.io.Serializable;
+import java.util.Set;
 
-public class Book {
-    private String serialId; //AF1155
+public class Book implements Serializable {
+
+    private String serialId;
     private String title;
     private String description;
     private double price;
     private int count;
-    private Author[] authors;
-    private String[] tags;
+    private Set<Author> authors;
+    private Set<String> tags;
 
-    public Book(String serialId, String title, String description,
-                double price, int count, Author[] authors) {
+    public Book(String serialId, String title, String description, double price, int count, Set<Author> authors) {
         this.serialId = serialId;
         this.title = title;
         this.description = description;
@@ -21,8 +22,7 @@ public class Book {
         this.authors = authors;
     }
 
-    public Book(String serialId, String title, String description,
-                double price, int count, Author[] authors, String[]tags) {
+    public Book(String serialId, String title, String description, double price, int count, Set<Author> authors, Set<String> tags) {
         this.serialId = serialId;
         this.title = title;
         this.description = description;
@@ -34,22 +34,6 @@ public class Book {
 
     public Book() {
 
-    }
-
-    public String[] getTags() {
-        return tags;
-    }
-
-    public void setTags(String[] tags) {
-        this.tags = tags;
-    }
-
-    public String getSerialId() {
-        return serialId;
-    }
-
-    public void setSerialId(String serialId) {
-        this.serialId = serialId;
     }
 
     public String getTitle() {
@@ -84,12 +68,28 @@ public class Book {
         this.count = count;
     }
 
-    public Author[] getAuthors() {
+    public String getSerialId() {
+        return serialId;
+    }
+
+    public void setSerialId(String serialId) {
+        this.serialId = serialId;
+    }
+
+    public Set<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(Author[] authors) {
+    public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
     }
 
     @Override
@@ -104,10 +104,8 @@ public class Book {
         if (serialId != null ? !serialId.equals(book.serialId) : book.serialId != null) return false;
         if (title != null ? !title.equals(book.title) : book.title != null) return false;
         if (description != null ? !description.equals(book.description) : book.description != null) return false;
-        // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        if (!Arrays.equals(authors, book.authors)) return false;
-        // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        return Arrays.equals(tags, book.tags);
+        if (authors != null ? !authors.equals(book.authors) : book.authors != null) return false;
+        return tags != null ? tags.equals(book.tags) : book.tags == null;
     }
 
     @Override
@@ -120,8 +118,8 @@ public class Book {
         temp = Double.doubleToLongBits(price);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + count;
-        result = 31 * result + Arrays.hashCode(authors);
-        result = 31 * result + Arrays.hashCode(tags);
+        result = 31 * result + (authors != null ? authors.hashCode() : 0);
+        result = 31 * result + (tags != null ? tags.hashCode() : 0);
         return result;
     }
 
@@ -133,8 +131,8 @@ public class Book {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", count=" + count +
-                ", authors=" + Arrays.toString(authors) +
-                ", tags=" + Arrays.toString(tags) +
+                ", authors=" + authors +
+                ", tags=" + tags +
                 '}';
     }
 }

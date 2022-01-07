@@ -1,11 +1,10 @@
 package homework.education.model;
 
-import homework.education.util.DateUtil;
-
-import java.util.Arrays;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class Student {
+public class Student implements Serializable {
 
     private String name;
     private String surname;
@@ -13,17 +12,17 @@ public class Student {
     private Date dateOfBirth;
     private String email;
     private String phone;
-    private Lesson[] lesson;
+    private List<Lesson> lessons;
 
 
-    public Student(String name, String surname, int age, Date dateOfBirth, String email, String phone, Lesson[] lessons) {
+    public Student(String name, String surname, int age, Date dateOfBirth, String email, String phone, List<Lesson> lessons) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.phone = phone;
-        this.lesson = lessons;
+        this.lessons = lessons;
     }
 
     public String getName() {
@@ -50,6 +49,14 @@ public class Student {
         this.age = age;
     }
 
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -66,26 +73,18 @@ public class Student {
         this.phone = phone;
     }
 
-    public Lesson[] getLesson() {
-        return lesson;
+    public List<Lesson> getLessons() {
+        return lessons;
     }
 
-    public void setLesson(Lesson[] lesson) {
-        this.lesson = lesson;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Student)) return false;
 
         Student student = (Student) o;
 
@@ -95,8 +94,7 @@ public class Student {
         if (dateOfBirth != null ? !dateOfBirth.equals(student.dateOfBirth) : student.dateOfBirth != null) return false;
         if (email != null ? !email.equals(student.email) : student.email != null) return false;
         if (phone != null ? !phone.equals(student.phone) : student.phone != null) return false;
-        // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        return Arrays.equals(lesson, student.lesson);
+        return lessons != null ? lessons.equals(student.lessons) : student.lessons == null;
     }
 
     @Override
@@ -107,7 +105,7 @@ public class Student {
         result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(lesson);
+        result = 31 * result + (lessons != null ? lessons.hashCode() : 0);
         return result;
     }
 
@@ -117,10 +115,10 @@ public class Student {
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
-                ", dateOfBirth=" + DateUtil.dateToString(dateOfBirth)  +
+                ", dateOfBirth=" + dateOfBirth +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", lesson=" + Arrays.toString(lesson) +
+                ", lessons=" + lessons +
                 '}';
     }
 }

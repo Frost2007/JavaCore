@@ -1,21 +1,26 @@
 package homework.author.model;
 
+import homework.author.util.DateUtil;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Author {
+public class Author implements Serializable {
+
     private String name;
     private String surname;
     private int age;
     private String email;
-    private String gender;
+    private Gender gender;
     private Date dateOfBirth;
 
-    public Author(String name, String surname, int age, String email, String gender) {
+    public Author(String name, String surname, int age, String email, Gender gender, Date dateOfBirth) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
         this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Author() {
@@ -53,14 +58,21 @@ public class Author {
         this.email = email;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -73,7 +85,8 @@ public class Author {
         if (name != null ? !name.equals(author.name) : author.name != null) return false;
         if (surname != null ? !surname.equals(author.surname) : author.surname != null) return false;
         if (email != null ? !email.equals(author.email) : author.email != null) return false;
-        return gender != null ? gender.equals(author.gender) : author.gender == null;
+        if (gender != null ? !gender.equals(author.gender) : author.gender != null) return false;
+        return dateOfBirth != null ? dateOfBirth.equals(author.dateOfBirth) : author.dateOfBirth == null;
     }
 
     @Override
@@ -83,6 +96,7 @@ public class Author {
         result = 31 * result + age;
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (gender != null ? gender.hashCode() : 0);
+        result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
         return result;
     }
 
@@ -94,6 +108,7 @@ public class Author {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", gender='" + gender + '\'' +
+                ", dateOfBirth=" + DateUtil.dateToString(dateOfBirth) +
                 '}';
     }
 }

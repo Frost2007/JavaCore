@@ -1,8 +1,8 @@
 package homework.education.exceptions;
 
 public class UserNotFoundException extends NullPointerException{
-    public UserNotFoundException(String s) {
-        super(s);
+    public UserNotFoundException() {
+        super();
     }
 
     @Override
